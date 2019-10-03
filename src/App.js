@@ -45,7 +45,7 @@ const HomeContainer = styled.div`
 
 const FileUpload = styled.div`
 	background-color: #ffffff;
-	width: 600px;
+	max-width: 600px;
 	margin: 0 auto;
   padding: 20px;
   min-height: 370px;
