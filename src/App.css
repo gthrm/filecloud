@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -7,7 +11,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #d6d8da;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -19,4 +23,9 @@
 
 .App-link {
   color: #09d3ac;
+}
+
+.feather:hover {
+  cursor: pointer;
+  fill: #19c679;
 }
