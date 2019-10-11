@@ -3,7 +3,10 @@ import styled from 'styled-components';
 import filesize from 'filesize';
 import swal from 'sweetalert';
 import api from './api';
+import { iosCopyToClipboard, IsSafari } from './etc/other';
 import './App.css';
+
+
 
 const Icon = ({ onClick }) => {
   return (
@@ -171,11 +174,9 @@ class App extends Component {
     this.setState({ data: undefined })
   }
 
-
-
-
   render() {
-    const { data } = this.state
+    const { data } = this.state;
+
     return (
       <div className="App">
         <header className="App-header">
@@ -192,6 +193,7 @@ class App extends Component {
 }
 
 function Home({ onInput }) {
+
   return (
     <HomeContainer>
       <FileUpload>
@@ -208,9 +210,13 @@ function Home({ onInput }) {
 };
 
 class Result extends Component {
-  state = {
-    inputValue: undefined
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: undefined
+    }
   }
+
   static getDerivedStateFromProps(props, state) {
     if (props.resultData.path && props.resultData.path !== state.inputValue) {
       return { inputValue: props.resultData.path }
@@ -220,7 +226,11 @@ class Result extends Component {
 
   copyToClipboard = () => {
     const stringClipboard = `https://25mbcloud.ml/${this.state.inputValue}`;
-    navigator.clipboard.writeText(stringClipboard);
+    if (!IsSafari) {
+      navigator.clipboard.writeText(stringClipboard);
+    } else {
+      iosCopyToClipboard('pathInput')
+    }
     console.log(stringClipboard);
     swal("Success!", "Link copied to clipboard!", "success");
   }
@@ -238,8 +248,8 @@ class Result extends Component {
           <FileUploadBtn onClick={onClick}>Add New Image</FileUploadBtn>
           <PathInputContainer>
             <PathInput
+              id="pathInput"
               type="text"
-              ref={(textinput) => this.textInput = textinput}
               value={`https://25mbcloud.ml/${inputValue}`}
               onChange={this.changeInputValue}
             />

@@ -9,7 +9,8 @@
     "react-dom": "^16.10.1",
     "react-scripts": "3.2.0",
     "styled-components": "^4.4.0",
-    "sweetalert": "^2.1.2"
+    "sweetalert": "^2.1.2",
+    "use-clipboard-copy": "^0.1.1"
   },
   "scripts": {
     "start": "react-scripts start",
