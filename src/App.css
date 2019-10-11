@@ -2,6 +2,10 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #d6d8da;
+}
+
 .App {
   text-align: center;
 }
