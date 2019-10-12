@@ -199,7 +199,7 @@ function Home({ onInput }) {
       <FileUpload>
         <FileUploadBtn htmlFor="file">Add Image</FileUploadBtn>
         <DragAndDropFile>
-          <FileUploadInput name="file" id="file" type="file" onChange={onInput} onInput={onInput} accept="image/*" />
+          <FileUploadInput name="file" id="file" type="file" onChange={onInput} accept="image/*" />
           <DragTextConatiner>
             <DragText>Drag and drop a file or select add Image</DragText>
           </DragTextConatiner>
