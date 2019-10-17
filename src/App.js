@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import filesize from 'filesize';
 import swal from 'sweetalert';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import api from './api';
-import { iosCopyToClipboard, IsSafari } from './etc/other';
 import './App.css';
 
 
@@ -213,7 +213,8 @@ class Result extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: undefined
+      inputValue: undefined,
+      copied: false
     }
   }
 
@@ -225,13 +226,14 @@ class Result extends Component {
   }
 
   copyToClipboard = () => {
-    const stringClipboard = `https://25mbcloud.ml/${this.state.inputValue}`;
-    if (!IsSafari) {
-      navigator.clipboard.writeText(stringClipboard);
-    } else {
-      iosCopyToClipboard('pathInput')
-    }
-    console.log(stringClipboard);
+    // const stringClipboard = `https://25mbcloud.ml/${this.state.inputValue}`;
+    // if (!IsSafari) {
+    //   navigator.clipboard.writeText(stringClipboard);
+    // } else {
+    //   iosCopyToClipboard('pathInput')
+    // }
+    // console.log(stringClipboard);
+    this.setState({ copied: true })
     swal("Success!", "Link copied to clipboard!", "success");
   }
 
@@ -246,15 +248,18 @@ class Result extends Component {
       <HomeContainer>
         <FileUpload>
           <FileUploadBtn onClick={onClick}>Add New Image</FileUploadBtn>
-          <PathInputContainer>
-            <PathInput
-              id="pathInput"
-              type="text"
-              value={`https://25mbcloud.ml/${inputValue}`}
-              onChange={this.changeInputValue}
-            />
-            <Icon onClick={this.copyToClipboard.bind(this)} />
-          </PathInputContainer>
+          <CopyToClipboard text={`https://25mbcloud.ml/${inputValue}`}
+            onCopy={this.copyToClipboard.bind(this)}>
+            <PathInputContainer>
+              <PathInput
+                id="pathInput"
+                type="text"
+                value={`https://25mbcloud.ml/${inputValue}`}
+                onChange={this.changeInputValue}
+              />
+              <Icon onClick={this.copyToClipboard.bind(this)} />
+            </PathInputContainer>
+          </CopyToClipboard>
           <ResultImage src={`https://25mbcloud.ml/${inputValue}`} alt="image" />
         </FileUpload>
       </HomeContainer>
