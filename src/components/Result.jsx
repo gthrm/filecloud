@@ -6,7 +6,6 @@ import styled from "styled-components";
 
 export function Result({ onClick, resultData }) {
   const [inputValue, setInputValue] = useState("");
-
   const copyToClipboard = () => {
     swal("Success!", "Link copied to clipboard!", "success");
   };
@@ -35,7 +34,7 @@ export function Result({ onClick, resultData }) {
             <CopyIcon onClick={copyToClipboard} />
           </PathInputContainer>
         </CopyToClipboard>
-        <ResultImage src={`${host}/${inputValue}`} alt="image" />
+        <ResultImage src={`${host}${inputValue}`} alt="image" />
       </FileUpload>
     </HomeContainer>
   );
