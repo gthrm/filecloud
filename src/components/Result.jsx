@@ -22,7 +22,7 @@ export function Result({ onClick, resultData }) {
       <FileUpload>
         <FileUploadBtn onClick={onClick}>Add New Image</FileUploadBtn>
         <CopyToClipboard
-          text={`${host}/${inputValue}`}
+          text={`${host}${inputValue}`}
           onCopy={copyToClipboard}
         >
           <PathInputContainer>
