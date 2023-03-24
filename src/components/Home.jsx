@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 export function Home({ onInput }) {
   return (
@@ -22,6 +23,12 @@ export function Home({ onInput }) {
     </HomeContainer>
   );
 }
+
+export default Home;
+
+Home.propTypes = {
+  onInput: PropTypes.func.isRequired,
+};
 
 const HomeContainer = styled.div`
   padding: 56px 20px;

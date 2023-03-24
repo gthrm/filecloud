@@ -1,23 +1,24 @@
-import React, { useState } from "react";
-import styled from "styled-components";
-import filesize from "filesize";
-import { createFile } from "./api";
-import { Result } from "./components/Result";
-import { Home } from "./components/Home";
-import "./App.css";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { filesize } from 'filesize';
+import { createFile } from './api';
+import { Result } from './components/Result';
+import { Home } from './components/Home';
+import './App.css';
 
-export const App = () => {
+export function App() {
   const [data, setData] = useState();
   const onInput = (event) => {
     const file = event.target.files[0];
     const newFile = new FormData();
-    newFile.append("file", file);
-    newFile.append("title", file.name);
-    newFile.append("size", filesize(file.size, { round: 0 }));
+    newFile.append('file', file);
+    newFile.append('title', file.name);
+    newFile.append('size', filesize(file.size, { round: 0 }));
     createFile(newFile)
-      .then(({ data }) => {
-        setData(data);
+      .then(({ data: newData }) => {
+        setData(newData);
       })
+      // eslint-disable-next-line no-console
       .catch((err) => console.error(err));
   };
 
@@ -37,7 +38,7 @@ export const App = () => {
       </header>
     </div>
   );
-};
+}
 
 const BuyMeACoffee = styled.div`
   padding: 56px 20px;

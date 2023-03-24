@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
-import swal from "sweetalert";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { CopyIcon } from "./CopyIcon";
-import styled from "styled-components";
+import React, { useState, useEffect } from 'react';
+import swal from 'sweetalert';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import styled from 'styled-components';
+import PropTypes, { string } from 'prop-types';
+import { CopyIcon } from './CopyIcon';
 
 export function Result({ onClick, resultData }) {
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('');
   const copyToClipboard = () => {
-    swal("Success!", "Link copied to clipboard!", "success");
+    swal('Success!', 'Link copied to clipboard!', 'success');
   };
 
   useEffect(() => {
@@ -39,6 +40,13 @@ export function Result({ onClick, resultData }) {
     </HomeContainer>
   );
 }
+
+export default Result;
+
+Result.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  resultData: PropTypes.objectOf(string).isRequired,
+};
 
 const HomeContainer = styled.div`
   padding: 56px 20px;

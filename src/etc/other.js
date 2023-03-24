@@ -1,9 +1,6 @@
-export const IsSafari = () => {
-  var is_safari = navigator.userAgent.toLowerCase().indexOf("safari/") > -1;
-  return is_safari;
-};
+export const IsSafari = () => navigator.userAgent.toLowerCase().indexOf('safari/') > -1;
 
 export const iosCopyToClipboard = (inputId) => {
   document.querySelector(`#${inputId}`).select();
-  document.execCommand("copy");
+  document.execCommand('copy');
 };
